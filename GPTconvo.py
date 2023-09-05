@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import requests
-
-
-def chat_with_gpt3(api_key, initial_prompt, model_name='gpt-4-0613'):
+import time
+#q
+def chat_with_gpt3(api_key, initial_prompt, model_name='gpt-4'):#change to gtp-4-32k for final
     endpoint = 'https://api.openai.com/v1/chat/completions'
     headers = {
         'Content-Type': 'application/json',
@@ -10,12 +10,17 @@ def chat_with_gpt3(api_key, initial_prompt, model_name='gpt-4-0613'):
     }
 
     messages = [{'role': 'system', 'content': initial_prompt}]
-
+    start_time = time.time()
     while True:
+
+        end_time = time.time()
         # Get user's message
+        elapsed_time = end_time - start_time
+        print(f"\tFunction took {elapsed_time:.2f} seconds to run.")
         user_input = input("You: ")
         if (user_input=="quit"):
             break
+        start_time = time.time()
 
         # Append the user's message to the conversation history
         messages.append({'role': 'user', 'content': user_input})
