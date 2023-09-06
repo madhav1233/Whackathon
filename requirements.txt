@@ -1,1 +1,4 @@
-requests
+Flask
+botbuilder-core
+botbuilder-schema
+openai
