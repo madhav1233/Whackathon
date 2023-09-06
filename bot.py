@@ -22,7 +22,7 @@ class DatabaseBot(ActivityHandler):
     def query_database(self, user_input: str) -> str:
         # Generate SQL query using GPT-3
         prompt = f"Translate the following user request into an SQL query: '{user_input}'"
-        response = openai.Completion.create(engine="davinci", prompt=prompt, max_tokens=150)
+        response = openai.Completion.create(engine="davinci", prompt=prompt, max_tokens=1000)
         query = response.choices[0].text.strip()
 
         # Connect to the SQLite database

@@ -11,7 +11,7 @@ SETTINGS = BotFrameworkAdapterSettings("cb1d782a-d2ea-48fb-90a5-75dcb6333844")
 ADAPTER = BotFrameworkAdapter(SETTINGS)
 
 # Initialize our bot
-BOT = DatabaseBot("tickets.db", "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")
+BOT = DatabaseBot("tickets.db", "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")
 
 @app.route("/api/messages", methods=["POST"])
 def messages():
