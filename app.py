@@ -3,15 +3,24 @@ from botbuilder.core import BotFrameworkAdapter, BotFrameworkAdapterSettings
 from botbuilder.schema import Activity
 from bot import DatabaseBot  # Import the bot from bot.py
 
+from azure.identity import DefaultAzureCredential
+from azure.keyvault.secrets import SecretClient
+
 # Initialize Flask
 app = Flask(__name__)
 
 # Bot Framework Adapter settings
-SETTINGS = BotFrameworkAdapterSettings("cb1d782a-d2ea-48fb-90a5-75dcb6333844")
+SETTINGS = BotFrameworkAdapterSettings("YOUR_APP_ID")
 ADAPTER = BotFrameworkAdapter(SETTINGS)
 
+# Retrieve OpenAI API key from Azure Key Vault
+key_vault_url = "https://openAIticketkey.vault.azure.net/"
+credential = DefaultAzureCredential()
+secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
+openai_api_key = secret_client.get_secret("OpenAIkey").value
+
 # Initialize our bot
-BOT = DatabaseBot("tickets.db", "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")
+BOT = DatabaseBot("tickets.db", openai_api_key)
 
 @app.route("/api/messages", methods=["POST"])
 def messages():
