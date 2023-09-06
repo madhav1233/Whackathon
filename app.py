@@ -22,7 +22,7 @@ openai_api_key = secret_client.get_secret("OpenAIkey").value
 # Initialize our bot
 BOT = DatabaseBot("tickets.db", openai_api_key)
 
-@app.route("/api/messages", methods=["POST"])
+@app.route("/api/messages", methods=["GET","POST"])
 def messages():
     if "application/json" in request.headers["Content-Type"]:
         body = request.json
