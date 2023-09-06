@@ -11,7 +11,7 @@ SETTINGS = BotFrameworkAdapterSettings("cb1d782a-d2ea-48fb-90a5-75dcb6333844")
 ADAPTER = BotFrameworkAdapter(SETTINGS)
 
 # Initialize our bot
-BOT = DatabaseBot("tickets.db", "YOUR_OPENAI_API_KEY")
+BOT = DatabaseBot("tickets.db", "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")
 
 @app.route("/api/messages", methods=["POST"])
 def messages():
